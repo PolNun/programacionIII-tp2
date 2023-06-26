@@ -14,7 +14,7 @@ import lombok.*;
 @Setter
 public class Usuario {
     @Id
-    @Column(name = "user")
+    @Column(name = "username")
     private String user;
     @Column(name = "password")
     private String password;
