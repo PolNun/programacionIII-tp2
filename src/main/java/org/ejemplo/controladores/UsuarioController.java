@@ -1,52 +1,46 @@
 package org.ejemplo.controladores;
 
-import lombok.extern.slf4j.Slf4j;
-import org.ejemplo.exceptions.UserException;
+import org.ejemplo.exceptions.UserAuthenticationException;
+import org.ejemplo.exceptions.UserRegistrationException;
 import org.ejemplo.modelos.Login;
 import org.ejemplo.modelos.Usuario;
 import org.ejemplo.servicios.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@Slf4j
+@RequestMapping("/users")
 public class UsuarioController {
-    @Autowired
-    public UsersService service;
+    private final UsersService usersService;
 
-    @PostMapping("/registry")
-    public ResponseEntity<String> createUser(@RequestBody Usuario usuario){
-        try{
-            String respuesta = service.guardarUsuario(usuario);
-            log.info("Usuario creado de forma correcta {}", usuario.getUser());
-            return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
-        } catch (UserException e){
-            log.warn("No se esta cumpliendo con las validaciones. Usuario a crear: {}", usuario);
-            return ResponseEntity.status(e.getStatusCode()).body(String.format("%s \n %s", e.getMessage(), e.getCausa()));
-        } catch (Exception e){
-            log.error("Error: ",e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ups!!! Algo salio mal, nuestro desarrolladores estan trabajando para solucionarlo");
-        }
+    @Autowired
+    public UsuarioController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Usuario>> getAll(){
-        return ResponseEntity.ok(service.retornarUsuarios());
+    @PostMapping("/registry")
+    public ResponseEntity<String> registryUser(@RequestBody Usuario usuario) {
+        try {
+            usersService.registrarUsuario(usuario);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado correctamente");
+        } catch (UserRegistrationException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Login login) {
-        String respuesta = service.login(login);
-        if (respuesta.contains("Error")){
-            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(respuesta);
+        try {
+            String role = usersService.login(login);
+            return ResponseEntity.ok(role);
+        } catch (UserAuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
-        return ResponseEntity.ok(respuesta);
     }
 }
+
