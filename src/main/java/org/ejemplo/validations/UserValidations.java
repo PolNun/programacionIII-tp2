@@ -12,7 +12,7 @@ public class UserValidations {
 
     public void validateExistingUser(String username) {
         if (usuarioRepository.findByUser(username).isPresent()) {
-            throw new UserRegistrationException("El usuario ya está registrado");
+            throw new UserRegistrationException("El nombre de usuario ya está registrado");
         }
     }
 
