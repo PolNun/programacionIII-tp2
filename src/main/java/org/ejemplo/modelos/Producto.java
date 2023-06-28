@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "productos")
 @AllArgsConstructor
@@ -23,8 +25,8 @@ public class Producto {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "fecha_actualizacion")
-    private String fechaActualizacion;
+    @Column(name = "fecha_creacion", insertable = false, updatable = false)
+    private Date fechaActualizacion;
     @Column(name = "stock")
     private Integer stock;
     @Column(name = "precio")

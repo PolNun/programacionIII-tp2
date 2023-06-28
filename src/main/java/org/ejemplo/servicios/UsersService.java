@@ -26,7 +26,7 @@ public class UsersService {
         usuarioRepository.save(usuario);
     }
 
-    public boolean autenticarUsuario(Login login) {
+    private boolean autenticarUsuario(Login login) {
         Usuario usuarioDB = usuarioRepository.findByUser(login.getUser())
                 .orElseThrow(() -> new UserAuthenticationException("Usuario no encontrado"));
 
