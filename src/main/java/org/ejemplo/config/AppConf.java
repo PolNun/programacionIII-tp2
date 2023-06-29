@@ -26,12 +26,12 @@ public class AppConf implements WebMvcConfigurer {
     private ProductoRepository productoRepository;
 
     @Bean
-    public UserValidations userValidations() {
+    UserValidations userValidations() {
         return new UserValidations(usuarioRepository);
     }
 
     @Bean
-    public ProductoValidations productoValidations() {
+    ProductoValidations productoValidations() {
         return new ProductoValidations(productoRepository);
     }
 }

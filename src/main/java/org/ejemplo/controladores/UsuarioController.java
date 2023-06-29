@@ -5,7 +5,6 @@ import org.ejemplo.exceptions.UserRegistrationException;
 import org.ejemplo.modelos.Login;
 import org.ejemplo.modelos.Usuario;
 import org.ejemplo.servicios.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
     private final UsersService usersService;
 
-    @Autowired
     public UsuarioController(UsersService usersService) {
         this.usersService = usersService;
     }

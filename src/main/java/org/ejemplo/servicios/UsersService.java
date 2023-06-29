@@ -5,7 +5,6 @@ import org.ejemplo.modelos.Login;
 import org.ejemplo.modelos.Usuario;
 import org.ejemplo.repository.UsuarioRepository;
 import org.ejemplo.validations.UserValidations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +12,6 @@ public class UsersService {
     private final UsuarioRepository usuarioRepository;
     private final UserValidations userValidations;
 
-    @Autowired
     public UsersService(UsuarioRepository usuarioRepository, UserValidations userValidations) {
         this.usuarioRepository = usuarioRepository;
         this.userValidations = userValidations;
