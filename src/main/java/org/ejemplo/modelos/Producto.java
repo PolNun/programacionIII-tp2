@@ -3,6 +3,7 @@ package org.ejemplo.modelos;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,10 +26,15 @@ public class Producto {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "fecha_creacion", insertable = false, updatable = false)
+    @Column(name = "fecha_creacion")
     private Date fechaActualizacion;
     @Column(name = "stock")
     private Integer stock;
     @Column(name = "precio")
     private Double precio;
+
+    @PrePersist
+    public void prePersist() {
+        fechaActualizacion = new Date();
+    }
 }
