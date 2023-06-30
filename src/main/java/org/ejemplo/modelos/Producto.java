@@ -1,10 +1,6 @@
 package org.ejemplo.modelos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,17 +16,17 @@ import java.util.Date;
 @Setter
 public class Producto {
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigo", nullable = false)
     private String codigo;
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
-    @Column(name = "fecha_creacion")
+    @Column(name = "fecha_creacion", nullable = false)
     private Date fechaActualizacion;
-    @Column(name = "stock")
+    @Column(name = "stock", nullable = false)
     private Integer stock;
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     private Double precio;
 
     @PrePersist

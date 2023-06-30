@@ -4,6 +4,7 @@ import org.ejemplo.exceptions.ProductoException;
 import org.ejemplo.modelos.Producto;
 import org.ejemplo.repository.ProductoRepository;
 import org.ejemplo.validations.ProductoValidations;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,18 +19,29 @@ public class ProductoService {
 
     public void registrarProducto(Producto producto) throws ProductoException {
         productoValidations.validateExistingProduct(producto.getCodigo());
+        productoValidations.validateProductoData(producto);
 
         productoRepository.save(producto);
     }
 
-    public void actualizarProducto(Producto producto) throws ProductoException {
-        productoValidations.validateExistingProduct(producto.getCodigo());
+    public void actualizarProducto(String codigo, Producto producto) throws ProductoException {
+        productoValidations.validateProductoData(producto);
 
-        productoRepository.save(producto);
+        Producto existingProducto = productoRepository.findById(codigo)
+                .orElseThrow(() -> new ProductoException(HttpStatus.PRECONDITION_FAILED, "El producto no existe.", "ProductoException"));
+
+        existingProducto.setNombre(producto.getNombre());
+        existingProducto.setDescripcion(producto.getDescripcion());
+        existingProducto.setStock(producto.getStock());
+        existingProducto.setPrecio(producto.getPrecio());
+
+        productoRepository.save(existingProducto);
     }
 
     public void eliminarProducto(String codigo) throws ProductoException {
-        productoValidations.validateExistingProduct(codigo);
+        if (!productoValidations.productoExists(codigo)) {
+            throw new ProductoException(HttpStatus.PRECONDITION_FAILED, "El producto no existe.", "ProductoException");
+        }
 
         productoRepository.deleteById(codigo);
     }
