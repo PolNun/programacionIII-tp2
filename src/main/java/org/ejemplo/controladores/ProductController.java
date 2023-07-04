@@ -46,4 +46,22 @@ public class ProductController {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
         }
     }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> listProducts() {
+        try {
+            return ResponseEntity.ok(productService.getAllProducts());
+        } catch (ProductException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/list/{code}")
+    public ResponseEntity<?> listProduct(@PathVariable String code) {
+        try {
+            return ResponseEntity.ok(productService.getProduct(code));
+        } catch (ProductException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        }
+    }
 }

@@ -28,9 +28,4 @@ public class Product {
     private Integer stock;
     @Column(name = "price", nullable = false)
     private Double price;
-
-    @PrePersist
-    public void prePersist() {
-        lastUpdated = new Date();
-    }
 }

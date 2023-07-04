@@ -18,10 +18,6 @@ public class ProductValidator {
         }
     }
 
-    public boolean productExists(String code) {
-        return productRepository.existsById(code);
-    }
-
     public void validateProductData(Product product) throws ProductException {
         validateCode(product.getCode());
         validateName(product.getName());

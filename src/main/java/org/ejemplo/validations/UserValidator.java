@@ -12,7 +12,7 @@ public class UserValidator {
     }
 
     public void validateExistingUser(String username) {
-        if (userRepository.existsById(username)) {
+        if (userRepository.findByUsername(username).isPresent()) {
             throw new UserRegistrationException(HttpStatus.PRECONDITION_FAILED, "El usuario ya existe", "UserRegistrationException");
         }
     }
