@@ -1,9 +1,9 @@
 package org.ejemplo.config;
 
-import org.ejemplo.repository.ProductoRepository;
-import org.ejemplo.repository.UsuarioRepository;
-import org.ejemplo.validations.ProductoValidations;
-import org.ejemplo.validations.UserValidations;
+import org.ejemplo.repository.ProductRepository;
+import org.ejemplo.repository.UserRepository;
+import org.ejemplo.validations.ProductValidator;
+import org.ejemplo.validations.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,18 +20,18 @@ public class AppConf implements WebMvcConfigurer {
     }
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private ProductoRepository productoRepository;
+    private ProductRepository productRepository;
 
     @Bean
-    UserValidations userValidations() {
-        return new UserValidations(usuarioRepository);
+    UserValidator userValidator() {
+        return new UserValidator(userRepository);
     }
 
     @Bean
-    ProductoValidations productoValidations() {
-        return new ProductoValidations(productoRepository);
+    ProductValidator productValidator() {
+        return new ProductValidator(productRepository);
     }
 }

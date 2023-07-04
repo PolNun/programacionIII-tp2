@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class UserException extends Exception {
     private HttpStatus statusCode;
-    private String causa;
+    private String cause;
 
     public UserException(HttpStatus status, String message, String cause) {
         super(message);
-        this.causa = cause;
+        this.cause = cause;
         this.statusCode = status;
     }
 }

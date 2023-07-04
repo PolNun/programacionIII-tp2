@@ -2,13 +2,13 @@ package org.ejemplo.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public class ProductoException extends Exception {
+public class ProductException extends Exception {
     private HttpStatus statusCode;
-    private String causa;
+    private String cause;
 
-    public ProductoException(HttpStatus status, String message, String cause) {
+    public ProductException(HttpStatus status, String message, String cause) {
         super(message);
-        this.causa = cause;
+        this.cause = cause;
         this.statusCode = status;
     }
 

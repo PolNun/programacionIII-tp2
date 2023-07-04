@@ -3,8 +3,8 @@ package org.ejemplo.controladores;
 import org.ejemplo.exceptions.UserAuthenticationException;
 import org.ejemplo.exceptions.UserRegistrationException;
 import org.ejemplo.modelos.Login;
-import org.ejemplo.modelos.Usuario;
-import org.ejemplo.servicios.UsersService;
+import org.ejemplo.modelos.User;
+import org.ejemplo.servicios.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
-public class UsuarioController {
-    private final UsersService usersService;
+@RequestMapping("/auth")
+public class AuthController {
+    private final UserService userService;
 
-    public UsuarioController(UsersService usersService) {
-        this.usersService = usersService;
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
-    @PostMapping("/registry")
-    public ResponseEntity<String> registryUser(@RequestBody Usuario usuario) {
+    @PostMapping("/registration")
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
         try {
-            usersService.registrarUsuario(usuario);
+            userService.register(user);
             return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado correctamente");
         } catch (UserRegistrationException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
         }
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Login login) {
         try {
-            String role = usersService.login(login);
+            String role = userService.login(login);
             return ResponseEntity.ok(role);
         } catch (UserAuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
         }
     }
 }
