@@ -1,6 +1,6 @@
-package org.ejemplo.repository;
+package org.ejemplo.repositories;
 
-import org.ejemplo.modelos.User;
+import org.ejemplo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

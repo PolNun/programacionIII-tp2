@@ -1,10 +1,10 @@
-package org.ejemplo.servicios;
+package org.ejemplo.services;
 
 import org.ejemplo.exceptions.UserAuthenticationException;
 import org.ejemplo.exceptions.UserException;
-import org.ejemplo.modelos.Login;
-import org.ejemplo.modelos.User;
-import org.ejemplo.repository.UserRepository;
+import org.ejemplo.models.Login;
+import org.ejemplo.models.User;
+import org.ejemplo.repositories.UserRepository;
 import org.ejemplo.validations.UserValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

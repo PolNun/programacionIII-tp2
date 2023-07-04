@@ -1,4 +1,4 @@
-package org.ejemplo.modelos;
+package org.ejemplo.models;
 
 import jakarta.persistence.*;
 import lombok.*;

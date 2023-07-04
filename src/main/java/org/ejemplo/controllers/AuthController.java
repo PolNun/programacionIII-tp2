@@ -1,10 +1,10 @@
-package org.ejemplo.controladores;
+package org.ejemplo.controllers;
 
 import org.ejemplo.exceptions.UserAuthenticationException;
 import org.ejemplo.exceptions.UserRegistrationException;
-import org.ejemplo.modelos.Login;
-import org.ejemplo.modelos.User;
-import org.ejemplo.servicios.UserService;
+import org.ejemplo.models.Login;
+import org.ejemplo.models.User;
+import org.ejemplo.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

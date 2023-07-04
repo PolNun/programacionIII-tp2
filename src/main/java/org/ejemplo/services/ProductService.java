@@ -1,8 +1,8 @@
-package org.ejemplo.servicios;
+package org.ejemplo.services;
 
 import org.ejemplo.exceptions.ProductException;
-import org.ejemplo.modelos.Product;
-import org.ejemplo.repository.ProductRepository;
+import org.ejemplo.models.Product;
+import org.ejemplo.repositories.ProductRepository;
 import org.ejemplo.validations.ProductValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,9 @@ public class ProductService {
         productValidator.validateProductData(product);
 
         Product productToUpdate = productRepository.findById(code)
-                .orElseThrow(() -> new ProductException(HttpStatus.PRECONDITION_FAILED, "El producto no existe.", "ProductoException"));
+                .orElseThrow(() -> new ProductException(HttpStatus.PRECONDITION_FAILED,
+                        "El producto no existe.",
+                        "ProductoException"));
 
         productToUpdate.setName(product.getName());
         productToUpdate.setDescription(product.getDescription());
@@ -53,7 +55,9 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
 
         if (products.isEmpty()) {
-            throw new ProductException(HttpStatus.NOT_FOUND, "No hay productos registrados.", "ProductoException");
+            throw new ProductException(HttpStatus.NOT_FOUND,
+                    "No hay productos registrados.",
+                    "ProductoException");
         }
 
         return products;
@@ -61,6 +65,8 @@ public class ProductService {
 
     public Product getProduct(String code) throws ProductException {
         return productRepository.findById(code)
-                .orElseThrow(() -> new ProductException(HttpStatus.NOT_FOUND, "El producto no existe.", "ProductoException"));
+                .orElseThrow(() -> new ProductException(HttpStatus.NOT_FOUND,
+                        "El producto no existe.",
+                        "ProductoException"));
     }
 }

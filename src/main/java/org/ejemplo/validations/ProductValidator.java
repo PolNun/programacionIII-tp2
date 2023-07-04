@@ -1,8 +1,8 @@
 package org.ejemplo.validations;
 
 import org.ejemplo.exceptions.ProductException;
-import org.ejemplo.modelos.Product;
-import org.ejemplo.repository.ProductRepository;
+import org.ejemplo.models.Product;
+import org.ejemplo.repositories.ProductRepository;
 import org.springframework.http.HttpStatus;
 
 public class ProductValidator {

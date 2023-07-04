@@ -1,7 +1,7 @@
 package org.ejemplo.config;
 
-import org.ejemplo.repository.ProductRepository;
-import org.ejemplo.repository.UserRepository;
+import org.ejemplo.repositories.ProductRepository;
+import org.ejemplo.repositories.UserRepository;
 import org.ejemplo.validations.ProductValidator;
 import org.ejemplo.validations.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;

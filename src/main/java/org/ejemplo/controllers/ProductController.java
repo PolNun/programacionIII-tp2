@@ -1,8 +1,8 @@
-package org.ejemplo.controladores;
+package org.ejemplo.controllers;
 
 import org.ejemplo.exceptions.ProductException;
-import org.ejemplo.modelos.Product;
-import org.ejemplo.servicios.ProductService;
+import org.ejemplo.models.Product;
+import org.ejemplo.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package org.ejemplo.controladores;
+package org.ejemplo.controllers;
 
-import org.ejemplo.modelos.User;
-import org.ejemplo.servicios.UserService;
+import org.ejemplo.models.User;
+import org.ejemplo.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
