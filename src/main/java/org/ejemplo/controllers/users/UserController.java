@@ -1,7 +1,7 @@
-package org.ejemplo.controllers;
+package org.ejemplo.controllers.users;
 
-import org.ejemplo.models.User;
-import org.ejemplo.services.UserService;
+import org.ejemplo.models.users.User;
+import org.ejemplo.services.users.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

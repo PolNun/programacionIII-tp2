@@ -17,7 +17,7 @@ import java.util.Date;
 public class Product {
     @Id
     @Column(name = "code", nullable = false)
-    private String code;
+    private String id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "description", nullable = false)

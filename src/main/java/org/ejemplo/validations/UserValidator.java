@@ -1,7 +1,7 @@
 package org.ejemplo.validations;
 
 import org.ejemplo.exceptions.UserRegistrationException;
-import org.ejemplo.repositories.UserRepository;
+import org.ejemplo.repositories.users.UserRepository;
 import org.springframework.http.HttpStatus;
 
 public class UserValidator {

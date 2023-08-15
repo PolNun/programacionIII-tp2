@@ -1,8 +1,8 @@
-package org.ejemplo.services;
+package org.ejemplo.services.products;
 
 import org.ejemplo.exceptions.ProductException;
 import org.ejemplo.models.Product;
-import org.ejemplo.repositories.ProductRepository;
+import org.ejemplo.repositories.products.ProductRepository;
 import org.ejemplo.validations.ProductValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class ProductService {
     }
 
     public void register(Product product) throws ProductException {
-        productValidator.validateExistingProduct(product.getCode());
+        productValidator.validateExistingProduct(product.getId());
         productValidator.validateProductData(product);
         product.setLastUpdated(new Date());
 

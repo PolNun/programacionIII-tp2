@@ -1,4 +1,4 @@
-package org.ejemplo.models;
+package org.ejemplo.models.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

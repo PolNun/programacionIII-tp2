@@ -2,7 +2,7 @@ package org.ejemplo.validations;
 
 import org.ejemplo.exceptions.ProductException;
 import org.ejemplo.models.Product;
-import org.ejemplo.repositories.ProductRepository;
+import org.ejemplo.repositories.products.ProductRepository;
 import org.springframework.http.HttpStatus;
 
 public class ProductValidator {
@@ -19,7 +19,7 @@ public class ProductValidator {
     }
 
     public void validateProductData(Product product) throws ProductException {
-        validateCode(product.getCode());
+        validateCode(product.getId());
         validateName(product.getName());
         validateDescription(product.getDescription());
         validateStock(product.getStock());

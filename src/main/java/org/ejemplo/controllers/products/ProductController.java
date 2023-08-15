@@ -1,8 +1,8 @@
-package org.ejemplo.controllers;
+package org.ejemplo.controllers.products;
 
 import org.ejemplo.exceptions.ProductException;
 import org.ejemplo.models.Product;
-import org.ejemplo.services.ProductService;
+import org.ejemplo.services.products.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class ProductController {
     @PutMapping("/update")
     public ResponseEntity<String> updateProduct(@RequestBody Product product) {
         try {
-            String code = product.getCode();
+            String code = product.getId();
             productService.update(code, product);
             return ResponseEntity.ok("Producto actualizado correctamente.");
         } catch (ProductException e) {
@@ -37,7 +37,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/delete") // TODO: modificar para recibir el id en URL
     public ResponseEntity<String> deleteProduct(@RequestBody String code) {
         try {
             productService.delete(code);
